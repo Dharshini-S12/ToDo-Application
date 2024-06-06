@@ -115,7 +115,7 @@ function Todo(){
                 <div className='todo-btns'>
                 <div className="todo-items-button">
                     <button style={{ background: todo.status === "Completed" ? "#F4F4DC" : todo.status === "Progress" ? "#BBC19A" : "#6A604D",}}>
-                        {todo.status === "Completed" && <button className="btn-color">Complete</button>}
+                        {todo.status === "Completed" && <button className="btn-color">Completed</button>}
                         {todo.status === "Progress" && (
                             <button onClick={() => handleProgress(todo.id)} className="btn-color">Progress</button>
                         )}
