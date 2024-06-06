@@ -21,13 +21,13 @@ function Todo(){
         setTodos(newTodo)
     }
 
-    const handleAdd = (newTitle, newDescription, newStatus) =>{
-        if(newTitle !== " " && newDescription!== " "){
+    const handleAdd = (title, description, status) =>{
+        if(title !== " " && description!== " "){
             const newTodo = {
                 id: Date.now(),
-                title: newTitle,
-                description : newDescription,
-                status : newStatus
+                title: title,
+                description : description,
+                status : status
             }
             setTodos([...todos,newTodo])
             setTitle( " ")
@@ -42,6 +42,9 @@ function Todo(){
         const newTodo = todos.filter((todo)=>(todo.id!==id))
         alert("This task will be deleted!!!")
         setTodos(newTodo)
+    }
+    const handleUpdate = (id) =>{
+
     }
     return(
         <div className='App'>
@@ -85,6 +88,9 @@ function Todo(){
                 </div>
                 <div className="todo-items-button">
                     <button onClick={()=>handleDelete(todo.id)}>Delete</button>
+                </div>
+                <div className="todo-items-button">
+                    <button onClick={()=>handleUpdate(todo.id)}>Update</button>
                 </div>
                 </div>
                 
