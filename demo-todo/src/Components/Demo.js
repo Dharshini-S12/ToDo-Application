@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-function Todo(){
+function Demo(){
     const[todos,setTodos] = useState(data)
     const[title,setTitle] = useState(" ")
     const[description,setDescription] = useState(" ")
@@ -63,10 +63,10 @@ function Todo(){
         setTodos(newTodo)
     }
 
-    const handleInputUpdate = (title, description) =>{
+    const handleInputUpdate = (id ,title, description) =>{
         if(title !== " " && description!== " "){
             const newTodo = {
-                id: Date.now(),
+                id: id,
                 title: title,
                 description : description,
                 status : status
@@ -126,7 +126,7 @@ function Todo(){
                     
                 </div>
                 <div className="todo-items-button-img">
-                    <button onClick={()=>handleDelete(todo.id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></button>
+                    <Child onHandleDelete={handleDelete(id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></Child>
                 </div>
                 <div className="todo-items-button-img">
                     <button onClick={()=>handleUpdate(todo.id,todo.title,todo.description,todo.status)}><img src="/images/edit.png" alt='delete' className='delete-img'></img></button>
@@ -139,6 +139,17 @@ function Todo(){
         </div>
     )
 }
+
+function Child({todo,onHandleDelete}){
+    return(
+        <div>
+            <div className="todo-items-button-img">
+                    <button onClick={()=>onHandleDelete(todo.id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></button>
+                </div>
+        </div>
+    )
+}
+
 const data = [
     {
       id: 1,
@@ -176,4 +187,4 @@ const data = [
       status: "Pending",
     },
   ];
-export default Todo;
+export default Demo;
