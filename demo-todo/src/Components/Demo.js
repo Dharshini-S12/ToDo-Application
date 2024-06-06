@@ -41,7 +41,7 @@ function Demo(){
 
     const handleDelete = (id) =>{
         const newTodo = todos.filter((todo)=>(todo.id!==id))
-        alert("This task will be deleted!!!")
+        // alert("This task will be deleted!!!")
         setTodos(newTodo)
     }
 
@@ -126,10 +126,10 @@ function Demo(){
                     
                 </div>
                 <div className="todo-items-button-img">
-                    <Child onHandleDelete={handleDelete(id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></Child>
+                    <Child todo={todo} onHandleDelete={handleDelete}><img src="/images/bin.png" alt='delete' className='delete-img'></img></Child>
                 </div>
                 <div className="todo-items-button-img">
-                    <button onClick={()=>handleUpdate(todo.id,todo.title,todo.description,todo.status)}><img src="/images/edit.png" alt='delete' className='delete-img'></img></button>
+                    <Child todo={todo} onHandleUpdate={handleUpdate}><img src="/images/edit.png" alt='delete' className='delete-img'></img></Child>
                 </div>
                 </div>
                 
@@ -140,12 +140,15 @@ function Demo(){
     )
 }
 
-function Child({todo,onHandleDelete}){
+function Child({todo,onHandleDelete,onHandleUpdate}){
     return(
         <div>
             <div className="todo-items-button-img">
                     <button onClick={()=>onHandleDelete(todo.id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></button>
-                </div>
+            </div>
+            <div className="todo-items-button-img">
+                    <button onClick={()=>onHandleUpdate(todo.id)}><img src="/images/edit.png" alt='delete' className='delete-img'></img></button>
+            </div>
         </div>
     )
 }

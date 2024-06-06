@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 function Todo(){
     const[todos,setTodos] = useState(data)
+    const[id,setId] = useState(null)
     const[title,setTitle] = useState(" ")
     const[description,setDescription] = useState(" ")
     const[status,setStatus] = useState(" ")
@@ -46,41 +47,31 @@ function Todo(){
     }
 
 
-    const handleUpdate = (id,title,description,status) =>{
-        const newTodo = todos.map((todo)=>{
-            if(todo.id===id){
-                    const updated = {
-                        title :setTitle(title),
-                        description : setDescription(description),
-                        status : setStatus(status)
-                        // ...todo,
-                        // id: !todo.id
-                    } 
-                    return updated 
-            }
-            return todo
-        })
-        setTodos(newTodo)
+    const handleUpdate = (id) =>{
+        const newTodo = todos.find((todo)=>todo.id===id)
+                setId(id)   
+                setTitle(newTodo.title)
+                setDescription(newTodo.description)
+                setStatus(newTodo.status)
+    }
+    const handleInputUpdate = () => {
+        if (title!== "" && description!== "") {
+            const updatedTodos = todos.map((todo) => {
+                if (todo.id === id) {
+                    return { ...todo, title: title, description: description, status: status };
+                }
+                return todo;
+            });
+            setTodos(updatedTodos);
+            setId(null);
+            setTitle("");
+            setDescription("");
+            setStatus("");
+        } else {
+            alert("Fill the required fields!!!");
+        }
     }
 
-    const handleInputUpdate = (title, description) =>{
-        if(title !== " " && description!== " "){
-            const newTodo = {
-                id: Date.now(),
-                title: title,
-                description : description,
-                status : status
-            }
-            setTodos([...todos,newTodo])
-            setTitle(" ")
-            setDescription(" ")
-            setStatus(" ")
-            
-        }
-        else{
-            alert("Fill the required fields!!!")
-        }   
-    }
 
     
     
@@ -98,8 +89,8 @@ function Todo(){
                 <option value="Progress">Progress</option>
                 <option value="Completed">Completed</option>
             </select>
-            <button onClick={()=>handleAdd(title,description,status)} className="todo-btn">ADD</button>
-            <button onClick={()=>handleInputUpdate(title,description)} className="todo-btn-1">UPDATE</button>
+            <button onClick={()=>handleAdd()} className="todo-btn">ADD</button>
+            <button onClick={()=>handleInputUpdate()} className="todo-btn-1">UPDATE</button>
             </div>
 
             <br></br>
@@ -129,7 +120,7 @@ function Todo(){
                     <button onClick={()=>handleDelete(todo.id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></button>
                 </div>
                 <div className="todo-items-button-img">
-                    <button onClick={()=>handleUpdate(todo.id,todo.title,todo.description,todo.status)}><img src="/images/edit.png" alt='delete' className='delete-img'></img></button>
+                    <button onClick={()=>handleUpdate(todo.id)}><img src="/images/edit.png" alt='delete' className='delete-img'></img></button>
                 </div>
                 </div>
                 
