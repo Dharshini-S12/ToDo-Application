@@ -30,8 +30,9 @@ function Todo(){
                 status : status
             }
             setTodos([...todos,newTodo])
-            setTitle( " ")
-            setDescription( " ")
+            setTitle(" ")
+            setDescription(" ")
+            setStatus(" ")
         }
         else{
             alert("Fill the required fields!!!")
