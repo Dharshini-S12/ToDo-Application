@@ -109,7 +109,7 @@ function Demo(){
                 <div key={todo.id} className="todo">
                 <div className="todo-list">
                 <div className="todo-items-details">
-                    <div className="todo-items-details-title">{todo.title}</div>
+                    
                     <div className="todo-items-details-description">{todo.description}</div>
                 </div>
                 <div className='todo-btns'>
@@ -126,11 +126,11 @@ function Demo(){
                     
                 </div>
                 <div className="todo-items-button-img">
-                    <Child todo={todo} onHandleDelete={handleDelete}><img src="/images/bin.png" alt='delete' className='delete-img'></img></Child>
+                    <Child  todo={todo} onHandleDelete={handleDelete} onHandleUpdate={handleUpdate} title={title}><img src="/images/bin.png" alt='delete' className='delete-img'></img></Child>
                 </div>
-                <div className="todo-items-button-img">
+                {/* <div className="todo-items-button-img">
                     <Child todo={todo} onHandleUpdate={handleUpdate}><img src="/images/edit.png" alt='delete' className='delete-img'></img></Child>
-                </div>
+                </div> */}
                 </div>
                 
                 </div>
@@ -140,9 +140,10 @@ function Demo(){
     )
 }
 
-function Child({todo,onHandleDelete,onHandleUpdate}){
+function Child({todo,onHandleDelete,onHandleUpdate,title}){
     return(
         <div>
+            <div>{todo.title}</div>
             <div className="todo-items-button-img">
                     <button onClick={()=>onHandleDelete(todo.id)}><img src="/images/bin.png" alt='delete' className='delete-img'></img></button>
             </div>
