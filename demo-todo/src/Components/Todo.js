@@ -89,7 +89,7 @@ function Todo(){
                 <option value="Progress">Progress</option>
                 <option value="Completed">Completed</option>
             </select>
-            <button onClick={()=>handleAdd()} className="todo-btn">ADD</button>
+            <button onClick={()=>handleAdd(title,description,status)} className="todo-btn">ADD</button>
             <button onClick={()=>handleInputUpdate()} className="todo-btn-1">UPDATE</button>
             </div>
 
